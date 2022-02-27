@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../index.ts"],
+  "sourcesContent": ["/*\nIniciando estudos sobre processos internos dos testes unit\u00E1rios.\nComo objetivo, iremos aplicar uma pequena estrutura que represente,\no funcionamento de um mini framework de testes.\n*/\n\n// Fun\u00E7\u00F5es bases que ser\u00E3o testadas.\nfunction somarValores(valueA: number, valueB: number) {\n  return valueA + valueB;\n}\n\n// Fun\u00E7\u00E3o que ser\u00E1 usada para realizar o teste.\nconst tester = (valorBase: any, comparativo: any) => {\n  if(valorBase === comparativo) {\n    console.log(`Oba, nosso teste passou com sucesso`);\n  } else {\n    console.log(`Ops. O teste falhou! verifique os valores`);\n  }\n}\n\n// Executando os testes.\ntester(somarValores(2,2), 4);\ntester(somarValores(3,3), 7);\n"],
+  "mappings": "AAOA,sBAAsB,QAAgB,QAAgB;AACpD,SAAO,SAAS;AAAA;AAIlB,MAAM,SAAS,CAAC,WAAgB,gBAAqB;AACnD,MAAG,cAAc,aAAa;AAC5B,YAAQ,IAAI;AAAA,SACP;AACL,YAAQ,IAAI;AAAA;AAAA;AAKhB,OAAO,aAAa,GAAE,IAAI;AAC1B,OAAO,aAAa,GAAE,IAAI;",
+  "names": []
+}
