@@ -1,13 +1,13 @@
 function somarValores(valueA, valueB) {
   return valueA + valueB;
 }
-const tester = (valorBase, comparativo) => {
+const tester = (nameTeste, valorBase, comparativo) => {
   if (valorBase === comparativo) {
-    console.log(`Oba, nosso teste passou com sucesso`);
+    console.log(`[42;1;37m Pass: [0m ${nameTeste} -> funcionou!`);
   } else {
-    console.log(`Ops. O teste falhou! verifique os valores`);
+    console.log(`[41;1;37m Fail: [0m ${nameTeste} -> falhou!`);
   }
 };
-tester(somarValores(2, 2), 4);
-tester(somarValores(3, 3), 7);
+tester("Soma de Valores correta", somarValores(2, 2), 4);
+tester("Teste deve retornar como erro", somarValores(3, 3), 7);
 //# sourceMappingURL=index.js.map
