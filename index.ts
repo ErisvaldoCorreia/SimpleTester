@@ -24,6 +24,7 @@ const tester = (nameTeste: string ,valorBase: any, comparativo: any) => {
 
 // Executando os testes.
 tester('Soma de Valores correta', somarValores(2,2), 4);
+tester('Nova Soma de Valores correta', somarValores(5,2), 7);
 tester('Teste deve retornar como erro', somarValores(3,3), 7);
 
 /* 
