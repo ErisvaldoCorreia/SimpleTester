@@ -17,19 +17,32 @@ do tester, informamos 3 parametros:
  - o valor ou função a ser testado;
  - o resultado que esperamos como comparativo;
 */
+let countSuccess = 0;
+let countFails = 0;
+
 const tester = (nameTeste: string ,valorBase: any, comparativo: any) => {
   if(valorBase === comparativo) {
-    console.log("\u001b[42;1;37m PASS: \u001b[0;32m" + ` ${nameTeste} -> funcionou!`);
+    countSuccess++;
+    console.log(`\u001b[42;1;37m PASS: \u001b[0;32m ${nameTeste} -> funcionou!`);
   } else {
-    console.log("\u001b[41;1;37m FAIL: \u001b[0;31m" + ` ${nameTeste} -> falhou!`);
+    countFails++;
+    console.log(`\u001b[41;1;37m FAIL: \u001b[0;31m ${nameTeste} -> falhou!`);
   }
 }
 
 // Função para agrupar os testes por grupo.
 const grupoTester = (nameTeste: string, funcoes: CallableFunction) => {
   // usando o scape code u001b para modos stricts.
-  console.log("\u001b[0;32m" + ` ${nameTeste}`);
+  countFails = 0;
+  countSuccess = 0;
+  console.log(`\u001b[0;36m ${nameTeste}\n`);
   funcoes();
+  console.log(`\u001b[0;36m 
+    Total:   ${countSuccess + countFails}
+    Sucesso: ${countSuccess}
+    Falhas:  ${countFails}
+    \u001b[0mFim dos Testes.
+  `);
 }
 
 // Executando os testes isoladamente.

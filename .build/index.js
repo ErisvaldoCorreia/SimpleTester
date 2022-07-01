@@ -4,16 +4,29 @@ function somarValores(valueA, valueB) {
 function subtrairValores(valueA, valueB) {
   return valueA - valueB;
 }
+let countSuccess = 0;
+let countFails = 0;
 const tester = (nameTeste, valorBase, comparativo) => {
   if (valorBase === comparativo) {
+    countSuccess++;
     console.log(`[42;1;37m PASS: [0;32m ${nameTeste} -> funcionou!`);
   } else {
+    countFails++;
     console.log(`[41;1;37m FAIL: [0;31m ${nameTeste} -> falhou!`);
   }
 };
 const grupoTester = (nameTeste, funcoes) => {
-  console.log(`[0;32m ${nameTeste}`);
+  countFails = 0;
+  countSuccess = 0;
+  console.log(`[0;36m ${nameTeste}
+`);
   funcoes();
+  console.log(`[0;36m 
+    Total:   ${countSuccess + countFails}
+    Sucesso: ${countSuccess}
+    Falhas:  ${countFails}
+    [0mFim dos Testes.
+  `);
 };
 tester("Soma de Valores correta", somarValores(2, 2), 4);
 tester("Nova Soma de Valores correta", somarValores(5, 2), 7);
