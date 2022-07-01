@@ -5,6 +5,10 @@ function somarValores(valueA: number, valueB: number) {
   return valueA + valueB;
 }
 
+function subtrairValores(valueA: number, valueB: number) {
+  return valueA - valueB;
+}
+
 /* 
 Função que será usada para realizar o teste. VERSÃO 1
 
@@ -16,15 +20,17 @@ do tester, informamos 3 parametros:
 */
 const tester = (nameTeste: string ,valorBase: any, comparativo: any) => {
   if(valorBase === comparativo) {
-    console.log("\033[42;1;37m Pass: \033[0m" + ` ${nameTeste} -> funcionou!`);
+    console.log("\033[42;1;37m PASS: \033[0;32m" + ` ${nameTeste} -> funcionou!`);
   } else {
-    console.log("\033[41;1;37m Fail: \033[0m" + ` ${nameTeste} -> falhou!`);
+    console.log("\033[41;1;37m FAIL: \033[0;31m" + ` ${nameTeste} -> falhou!`);
   }
 }
 
 // Executando os testes.
 tester('Soma de Valores correta', somarValores(2,2), 4);
 tester('Nova Soma de Valores correta', somarValores(5,2), 7);
+tester('Subtrair valores corretamente', subtrairValores(5,2), 3);
+tester('Este teste deve falhar', subtrairValores(5,2), 7);
 tester('Teste deve retornar como erro', somarValores(3,3), 7);
 
 /* 
