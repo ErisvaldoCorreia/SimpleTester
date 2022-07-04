@@ -9,9 +9,11 @@ function subtrairValores(valueA: number, valueB: number) {
 }
 
 /* 
-Função que será usada para realizar o teste. VERSÃO 1
+Funções que serão usadas para realizar o teste. VERSÃO 1.0.4
+Nesta modificação iremos aplicar alguns detalhes para tornar os testes
+simulados mais próximos de um framework de testes reais.
 
-Nesta função temos um processo de validação simples onde ao executarmos a chamada
+Nesta função tester temos um processo de validação simples onde ao executarmos a chamada
 do tester, informamos 3 parametros: 
  - o nome do teste que queremos realizar;
  - o valor ou função a ser testado;
@@ -30,6 +32,17 @@ const tester = (nameTeste: string ,valorBase: any, comparativo: any) => {
   }
 }
 
+const handleOutputTest = () => {
+  return console.log(`\u001b[0;36m 
+----------------------------------------------
+  Total:   ${countSuccess + countFails}
+  Sucesso: ${countSuccess}
+  Falhas:  ${countFails}
+  \u001b[0mFim dos Testes.\u001b[0;36m
+----------------------------------------------
+  `);
+}
+
 // Função para agrupar os testes por grupo.
 const grupoTester = (nameTeste: string, funcoes: CallableFunction) => {
   // usando o scape code u001b para modos stricts.
@@ -37,12 +50,7 @@ const grupoTester = (nameTeste: string, funcoes: CallableFunction) => {
   countSuccess = 0;
   console.log(`\u001b[0;36m ${nameTeste}\n`);
   funcoes();
-  console.log(`\u001b[0;36m 
-    Total:   ${countSuccess + countFails}
-    Sucesso: ${countSuccess}
-    Falhas:  ${countFails}
-    \u001b[0mFim dos Testes.
-  `);
+  handleOutputTest();
 }
 
 // Executando os testes isoladamente.

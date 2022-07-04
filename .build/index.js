@@ -15,18 +15,23 @@ const tester = (nameTeste, valorBase, comparativo) => {
     console.log(`[41;1;37m FAIL: [0;31m ${nameTeste} -> falhou!`);
   }
 };
+const handleOutputTest = () => {
+  return console.log(`[0;36m 
+----------------------------------------------
+  Total:   ${countSuccess + countFails}
+  Sucesso: ${countSuccess}
+  Falhas:  ${countFails}
+  [0mFim dos Testes.[0;36m
+----------------------------------------------
+  `);
+};
 const grupoTester = (nameTeste, funcoes) => {
   countFails = 0;
   countSuccess = 0;
   console.log(`[0;36m ${nameTeste}
 `);
   funcoes();
-  console.log(`[0;36m 
-    Total:   ${countSuccess + countFails}
-    Sucesso: ${countSuccess}
-    Falhas:  ${countFails}
-    [0mFim dos Testes.
-  `);
+  handleOutputTest();
 };
 tester("Soma de Valores correta", somarValores(2, 2), 4);
 tester("Nova Soma de Valores correta", somarValores(5, 2), 7);
