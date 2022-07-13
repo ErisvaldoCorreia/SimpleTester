@@ -2,7 +2,7 @@
 ### Estudo de construção de Testes
 _Erisvaldo Correia_
 
-[![Version Status](https://img.shields.io/badge/version-0.0.1-brightgreen)](https://img.shields.io/badge/version-0.0.1-brightgreen)
+[![Version Status](https://img.shields.io/badge/version-0.0.5-brightgreen)](https://img.shields.io/badge/version-0.0.5-brightgreen)
 
 Nesse estudo está sendo aplicado o processos existentes em um framework de testes,
 com o intuito de melhor compreensão sobre os mesmos.

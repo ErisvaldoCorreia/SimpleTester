@@ -9,7 +9,7 @@ function subtrairValores(valueA: number, valueB: number) {
 }
 
 /* 
-Funções que serão usadas para realizar o teste. VERSÃO 1.0.4
+Funções que serão usadas para realizar o teste. VERSÃO 0.0.5
 Nesta modificação iremos aplicar alguns detalhes para tornar os testes
 simulados mais próximos de um framework de testes reais.
 
@@ -22,13 +22,15 @@ do tester, informamos 3 parametros:
 let countSuccess = 0;
 let countFails = 0;
 
+//Estamos recebendo um any nos tipos por conta das possibilidades.
+//A comparação pode ser por função, string, number.
 const tester = (nameTeste: string ,valorBase: any, comparativo: any) => {
   if(valorBase === comparativo) {
     countSuccess++;
-    console.log(`\u001b[42;1;37m PASS: \u001b[0;32m ${nameTeste} -> funcionou!`);
+    console.log(`\u001b[42;1;37m PASS: \u001b[0;32m ${nameTeste}`);
   } else {
     countFails++;
-    console.log(`\u001b[41;1;37m FAIL: \u001b[0;31m ${nameTeste} -> falhou!`);
+    console.log(`\u001b[41;1;37m FAIL: \u001b[0;31m ${nameTeste}`);
   }
 }
 

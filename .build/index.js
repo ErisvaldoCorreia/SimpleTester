@@ -9,10 +9,10 @@ let countFails = 0;
 const tester = (nameTeste, valorBase, comparativo) => {
   if (valorBase === comparativo) {
     countSuccess++;
-    console.log(`[42;1;37m PASS: [0;32m ${nameTeste} -> funcionou!`);
+    console.log(`[42;1;37m PASS: [0;32m ${nameTeste}`);
   } else {
     countFails++;
-    console.log(`[41;1;37m FAIL: [0;31m ${nameTeste} -> falhou!`);
+    console.log(`[41;1;37m FAIL: [0;31m ${nameTeste}`);
   }
 };
 const handleOutputTest = () => {
