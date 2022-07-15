@@ -6,14 +6,26 @@ function subtrairValores(valueA, valueB) {
 }
 let countSuccess = 0;
 let countFails = 0;
-const tester = (nameTeste, valorBase, comparativo) => {
-  if (valorBase === comparativo) {
+const valideQue = (valorBase) => {
+  const assertions = {
+    sejaIgual(comparativo) {
+      if (valorBase !== comparativo) {
+        throw {};
+      }
+    }
+  };
+  return assertions;
+};
+const tester = (nameTeste, funcaoAssertiva) => {
+  try {
+    funcaoAssertiva();
     countSuccess++;
     console.log(`[42;1;37m PASS: [0;32m ${nameTeste}`);
-  } else {
+  } catch (err) {
     countFails++;
     console.log(`[41;1;37m FAIL: [0;31m ${nameTeste}`);
   }
+  ;
 };
 const handleOutputTest = () => {
   return console.log(`[0;36m 
@@ -33,17 +45,30 @@ const grupoTester = (nameTeste, funcoes) => {
   funcoes();
   handleOutputTest();
 };
-tester("Soma de Valores correta", somarValores(2, 2), 4);
-tester("Nova Soma de Valores correta", somarValores(5, 2), 7);
-tester("Subtrair valores corretamente", subtrairValores(5, 2), 3);
-tester("Este teste deve falhar", subtrairValores(5, 2), 7);
-tester("Teste deve retornar como erro", somarValores(3, 3), 7);
-grupoTester("Testes que devem passar", () => {
-  tester("Soma de Valores correta", somarValores(2, 2), 4);
-  tester("Subtrair valores corretamente", subtrairValores(5, 2), 3);
+grupoTester("Testando novo modelo aplicando matchers", () => {
+  tester("Soma de Valores correta", () => {
+    const retornado = somarValores(2, 2);
+    const esperado = 4;
+    valideQue(retornado).sejaIgual(esperado);
+  });
+  tester("Subtrair valores corretamente", () => {
+    const retornado = subtrairValores(2, 2);
+    const esperado = 0;
+    valideQue(retornado).sejaIgual(esperado);
+  });
+  tester("Subtrair valores erroneamente", () => {
+    const retornado = subtrairValores(2, 1);
+    const esperado = 2;
+    valideQue(retornado).sejaIgual(esperado);
+  });
 });
-grupoTester("Um teste passa e outro falha", () => {
-  tester("Soma de Valores correta", somarValores(2, 2), 4);
-  tester("Teste deve retornar como erro", somarValores(3, 3), 7);
-});
+const oldTester = (nameTeste, valorBase, comparativo) => {
+  if (valorBase === comparativo) {
+    countSuccess++;
+    console.log(`[42;1;37m PASS: [0;32m ${nameTeste}`);
+  } else {
+    countFails++;
+    console.log(`[41;1;37m FAIL: [0;31m ${nameTeste}`);
+  }
+};
 //# sourceMappingURL=index.js.map
