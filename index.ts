@@ -1,12 +1,6 @@
 //Iniciando estudos sobre processos internos dos testes unitários.
-
-function somarValores(valueA: number, valueB: number) {
-  return valueA + valueB;
-}
-
-function subtrairValores(valueA: number, valueB: number) {
-  return valueA - valueB;
-}
+import  chalk  from 'chalk';
+import { somarValores, subtrairValores } from './functions';
 
 /* 
 Funções que serão usadas para realizar o teste. VERSÃO 0.0.5
@@ -47,6 +41,7 @@ const tester = (nameTeste: string, funcaoAssertiva: any) => {
     funcaoAssertiva();
     countSuccess++;
     console.log(`\u001b[42;1;37m PASS: \u001b[0;32m ${nameTeste}`);
+    console.log(`${chalk.bgGreen.white(` PASS: `)} ${chalk.green(nameTeste)}`)
   } catch (err) {
     countFails++;
     console.log(`\u001b[41;1;37m FAIL: \u001b[0;31m ${nameTeste}`);
@@ -81,7 +76,7 @@ grupoTester('Testando novo modelo aplicando matchers', () => {
     const retornado = somarValores(2,2);
     const esperado = 4;
     valideQue(retornado).sejaIgual(esperado);
-  } );
+  });
   
   tester('Subtrair valores corretamente', () => {
     const retornado = subtrairValores(2,2);

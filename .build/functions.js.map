@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../functions.ts"],
+  "sourcesContent": ["export function somarValores(valueA: number, valueB: number) {\n  return valueA + valueB;\n}\n\nexport function subtrairValores(valueA: number, valueB: number) {\n  return valueA - valueB;\n}\n\n"],
+  "mappings": ";;;;;;;AAAA;AAAA;AAAA;AAAA;AAAO,sBAAsB,QAAgB,QAAgB;AAC3D,SAAO,SAAS;AAAA;AAGX,yBAAyB,QAAgB,QAAgB;AAC9D,SAAO,SAAS;AAAA;",
+  "names": []
+}
