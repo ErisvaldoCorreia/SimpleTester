@@ -1,5 +1,4 @@
 //Iniciando estudos sobre processos internos dos testes unitários.
-import  chalk  from 'chalk';
 import { somarValores, subtrairValores } from './functions';
 
 /* 
@@ -16,16 +15,27 @@ do tester, informamos 3 parametros:
 let countSuccess = 0;
 let countFails = 0;
 
+// Conjunto de cores mapeadas com scape para colorir a saida do terminal
+const scape = '\u001b';
+const colors = {
+  reset: `${scape}[0m`,
+  blue: `${scape}[0;36m`,
+  redBg: `${scape}[41;1;37m`,
+  greenBg: `${scape}[42;1;37m`,
+  green: `${scape}[0;32m`,
+  red: `${scape}[0;31m`
+}
+
 // Iniciando as funções de validação e matchers
-const valideQue = (valorBase: any) => {
+const valideQue = (baseValue: any) => {
   
-  // subconjunto de asserções (matchers) para validação
+  // Subconjunto de asserções (matchers) para validação
   const assertions = {
 
-    // matcher de igualdade.
-    // retorna um erro em caso de comparacao falsa
-    sejaIgual(comparativo: any){
-      if(valorBase !== comparativo) {
+    // Matcher de igualdade.
+    // Retorna um erro em caso de comparacao falsa
+    sejaIgual(compare: any){
+      if(baseValue !== compare) {
         throw{}; 
       } 
     }
@@ -36,37 +46,36 @@ const valideQue = (valorBase: any) => {
 }
 
 // Refatorando a função tester para usar com as asserções;
-const tester = (nameTeste: string, funcaoAssertiva: any) => {
+const tester = (nameTest: string, compareFunction: CallableFunction) => {
   try {
-    funcaoAssertiva();
+    compareFunction();
     countSuccess++;
-    console.log(`\u001b[42;1;37m PASS: \u001b[0;32m ${nameTeste}`);
-    console.log(`${chalk.bgGreen.white(` PASS: `)} ${chalk.green(nameTeste)}`)
+    console.log(`${colors.greenBg} PASS: ${colors.green} ${nameTest}`);
   } catch (err) {
     countFails++;
-    console.log(`\u001b[41;1;37m FAIL: \u001b[0;31m ${nameTeste}`);
+    console.log(`${colors.redBg} FAIL: ${colors.red} ${nameTest}`);
   };
 }
 
 // Função para validar total de testes e aplicar saida final
 const handleOutputTest = () => {
-  return console.log(`\u001b[0;36m 
+  return console.log(`${colors.blue} 
 ----------------------------------------------
   Total:   ${countSuccess + countFails}
   Sucesso: ${countSuccess}
   Falhas:  ${countFails}
-  \u001b[0mFim dos Testes.\u001b[0;36m
+  ${colors.reset}Fim dos Testes.${colors.blue}
 ----------------------------------------------
   `);
 }
 
 // Função para agrupar os testes por grupo. Simulando Describe
-const grupoTester = (nameTeste: string, funcoes: CallableFunction) => {
+const grupoTester = (nameDescribe: string, functions: CallableFunction) => {
   // usando o scape code u001b para modos stricts.
   countFails = 0;
   countSuccess = 0;
-  console.log(`\u001b[0;36m ${nameTeste}\n`);
-  funcoes();
+  console.log(`${colors.blue}${nameDescribe}\n`);
+  functions();
   handleOutputTest();
 }
 

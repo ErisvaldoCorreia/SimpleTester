@@ -16,48 +16,55 @@ var __reExport = (target, module2, desc) => {
 var __toModule = (module2) => {
   return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
-var import_chalk = __toModule(require("chalk"));
 var import_functions = __toModule(require("./functions"));
 let countSuccess = 0;
 let countFails = 0;
-const valideQue = (valorBase) => {
+const scape = "";
+const colors = {
+  reset: `${scape}[0m`,
+  blue: `${scape}[0;36m`,
+  redBg: `${scape}[41;1;37m`,
+  greenBg: `${scape}[42;1;37m`,
+  green: `${scape}[0;32m`,
+  red: `${scape}[0;31m`
+};
+const valideQue = (baseValue) => {
   const assertions = {
-    sejaIgual(comparativo) {
-      if (valorBase !== comparativo) {
+    sejaIgual(compare) {
+      if (baseValue !== compare) {
         throw {};
       }
     }
   };
   return assertions;
 };
-const tester = (nameTeste, funcaoAssertiva) => {
+const tester = (nameTest, compareFunction) => {
   try {
-    funcaoAssertiva();
+    compareFunction();
     countSuccess++;
-    console.log(`[42;1;37m PASS: [0;32m ${nameTeste}`);
-    console.log(`${import_chalk.default.bgGreen.white(` PASS: `)} ${import_chalk.default.green(nameTeste)}`);
+    console.log(`${colors.greenBg} PASS: ${colors.green} ${nameTest}`);
   } catch (err) {
     countFails++;
-    console.log(`[41;1;37m FAIL: [0;31m ${nameTeste}`);
+    console.log(`${colors.redBg} FAIL: ${colors.red} ${nameTest}`);
   }
   ;
 };
 const handleOutputTest = () => {
-  return console.log(`[0;36m 
+  return console.log(`${colors.blue} 
 ----------------------------------------------
   Total:   ${countSuccess + countFails}
   Sucesso: ${countSuccess}
   Falhas:  ${countFails}
-  [0mFim dos Testes.[0;36m
+  ${colors.reset}Fim dos Testes.${colors.blue}
 ----------------------------------------------
   `);
 };
-const grupoTester = (nameTeste, funcoes) => {
+const grupoTester = (nameDescribe, functions) => {
   countFails = 0;
   countSuccess = 0;
-  console.log(`[0;36m ${nameTeste}
+  console.log(`${colors.blue}${nameDescribe}
 `);
-  funcoes();
+  functions();
   handleOutputTest();
 };
 grupoTester("Testando novo modelo aplicando matchers", () => {
